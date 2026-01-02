@@ -183,8 +183,14 @@ class _ScannedRecipeReviewScreenState
                             runSpacing: 8,
                             children: recipe.categories.map((cat) {
                               return Chip(
-                                label: Text(cat),
-                                backgroundColor: Colors.blue.shade50,
+                                label: Text(
+                                  cat,
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                               );
                             }).toList(),
                           ),
@@ -339,19 +345,24 @@ class _ScannedRecipeReviewScreenState
       margin: const EdgeInsets.only(right: 12),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: Colors.grey.shade700),
+          Icon(
+            icon,
+            size: 16,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
           const SizedBox(width: 6),
           Text(
             text,
             style: TextStyle(
               fontSize: 13,
-              color: Colors.grey.shade700,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
