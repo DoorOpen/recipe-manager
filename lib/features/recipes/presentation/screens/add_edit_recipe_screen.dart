@@ -301,36 +301,63 @@ class _AddEditRecipeScreenState extends State<AddEditRecipeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Quick Import',
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Import a recipe from a website or photo',
-              style: theme.textTheme.bodySmall,
-            ),
-            const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: _importFromUrl,
-                    icon: const Icon(Icons.link),
-                    label: const Text('From URL'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: _importFromPhoto,
-                    icon: const Icon(Icons.photo_camera),
-                    label: const Text('Scan Photo'),
+                Icon(Icons.auto_awesome, color: theme.colorScheme.primary, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Quick Import',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 12),
+
+            // URL Import Button
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _importFromUrl,
+                icon: const Icon(Icons.link),
+                label: const Text('Import from Website URL'),
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            // Scan tip
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.lightbulb_outline,
+                    size: 20,
+                    color: theme.colorScheme.primary,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'To scan a recipe from a photo, use the scan button at the top of the Recipes screen',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -943,18 +970,6 @@ class _AddEditRecipeScreenState extends State<AddEditRecipeScreen> {
     );
   }
 
-  void _importFromPhoto() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Photo scanning feature coming soon!'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-    // TODO: Implement image picker and OCR
-    // 1. Use image_picker to select photo
-    // 2. Upload to OCR service (AWS Textract or Google Cloud Vision)
-    // 3. Parse results and populate form fields
-  }
 
   // Photo management methods
   Future<void> _addPhotoFromCamera() async {
