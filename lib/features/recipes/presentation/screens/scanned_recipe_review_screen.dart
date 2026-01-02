@@ -307,16 +307,6 @@ class _ScannedRecipeReviewScreenState
               fontSize: 12,
             ),
           ),
-          if (metadata != null) ...[
-            const SizedBox(width: 8),
-            Text(
-              '\$${metadata.cost.toStringAsFixed(4)}',
-              style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 11,
-              ),
-            ),
-          ],
         ],
       ),
     );
